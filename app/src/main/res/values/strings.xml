@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Help Ping FINAL</string>
+    <string name="title_activity_crime_maps">Map</string>
+    <string name="login_register">Login/Register</string>
+    <string name="share_location">Share Location</string>
+    <string name="share_personal_information">Share Personal Information</string>
+    <string name="option_4">Option 4</string>
+</resources>
