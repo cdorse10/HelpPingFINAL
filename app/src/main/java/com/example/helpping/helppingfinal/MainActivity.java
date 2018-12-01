@@ -1,10 +1,26 @@
 package com.example.helpping.helppingfinal;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,9 +29,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button eBtn = (Button)findViewById(R.id.emergencyButton);
+        final Button eBtn = (Button)findViewById(R.id.emergencyButton);
         Button mapBtn = (Button)findViewById(R.id.crimeMapbutton);
         Button settingsBtn = (Button)findViewById(R.id.settingsButton);
+
+        final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+
+
 
         mapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -24,14 +44,68 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
         eBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("message");
+
+                myRef.setValue("Hi, World!");
+
+                /*// Write a message to the database
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                //DatabaseReference myLoc = database.getReference("Emergency");
+
+                DatabaseReference myLoc = database.getReference("");
+                // Get lat/long and send to database > plot on map > alert other users?
+                if (ContextCompat.checkSelfPermission(View.getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    // Permission to access the location is missing.
+                    PermissionUtils.requestPermission(this, LOCATION_PERMISSION_REQUEST_CODE,
+                            Manifest.permission.ACCESS_FINE_LOCATION, true);
+
+                    // instantiate the location manager, note you will need to request permissions in your manifest
+                    LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                    // get the last know location from your location manager.
+                    Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    LatLng latLng;
+                    latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                    myLoc.setValue(latLng);
+
+                //myLoc.setValue("Hello, World!");*/
+
 
             }
         });
 
 
 
+
+
     }
+
 }
+    /*public void onPing() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myLoc = database.getReference("");
+        // Get lat/long and send to database > plot on map > alert other users?
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Permission to access the location is missing.
+            PermissionUtils.requestPermission(this, LOCATION_PERMISSION_REQUEST_CODE,
+                    Manifest.permission.ACCESS_FINE_LOCATION, true);
+            // instantiate the location manager, note you will need to request permissions in your manifest
+            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            // get the last know location from your location manager.
+            Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            LatLng latLng;
+            latLng = new LatLng(location.getLatitude(), location.getLongitude());
+            myLoc.setValue(latLng);
+
+        }
+    }*/
+
+

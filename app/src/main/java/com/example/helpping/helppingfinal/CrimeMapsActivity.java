@@ -71,6 +71,8 @@ public class CrimeMapsActivity extends FragmentActivity implements OnMapReadyCal
                 mMap.addMarker(mp);
                 mMap.moveCamera(center);
                 mMap.animateCamera(zoom);
+
+
             }
 
 

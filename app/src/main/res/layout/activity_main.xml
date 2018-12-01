@@ -30,7 +30,8 @@
         android:textColor="@android:color/white"
         app:layout_constraintBaseline_toBaselineOf="@+id/crimeMapbutton"
         app:layout_constraintEnd_toStartOf="@+id/settingsButton"
-        app:layout_constraintStart_toEndOf="@+id/crimeMapbutton" />
+        app:layout_constraintStart_toEndOf="@+id/crimeMapbutton"
+        android:onClick="onPing"/>
 
     <Button
         android:id="@+id/crimeMapbutton"
