@@ -56,15 +56,26 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        final double longitude = location.getLongitude();
+        final double latitude = location.getLatitude();
 
         eBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("message");
+                DatabaseReference myLoc = database.getReference("Position");
 
-                myRef.setValue("Hello, World!");
+
+
+                MarkerOptions mp = new MarkerOptions();
+
+                mp.position(new LatLng(latitude, longitude));
+
+                mp.title("My Position");
+                myLoc.setValue(mp.position(new LatLng(latitude, longitude)));
 
                 AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
                 alertDialog.setTitle("Alert");
