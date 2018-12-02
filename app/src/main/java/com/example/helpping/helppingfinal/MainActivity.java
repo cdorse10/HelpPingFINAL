@@ -2,6 +2,7 @@ package com.example.helpping.helppingfinal;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -9,6 +10,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -35,7 +37,16 @@ public class MainActivity extends AppCompatActivity {
 
         final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
+        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+        alertDialog.setTitle("Warning");
+        alertDialog.setMessage("This app's main functionality is to be used for emergencies only");
 
+        new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        };
+        alertDialog.show();
 
         mapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +64,18 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("message");
 
-                myRef.setValue("Hi, World!");
+                myRef.setValue("Hello, World!");
+
+                AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                alertDialog.setTitle("Alert");
+                alertDialog.setMessage("Help is on the way!");
+
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        };
+                alertDialog.show();
 
                 /*// Write a message to the database
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
