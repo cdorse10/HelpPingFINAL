@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         Button mapBtn = (Button)findViewById(R.id.crimeMapbutton);
         Button settingsBtn = (Button)findViewById(R.id.settingsButton);
 
-        final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+
 
         AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
         alertDialog.setTitle("Warning");
@@ -56,27 +56,41 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        /*LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         final double longitude = location.getLongitude();
-        final double latitude = location.getLatitude();
+        final double latitude = location.getLatitude();*/
 
         eBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //Push Location of user to database
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myLoc = database.getReference("Position");
 
+                /*LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+                Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                double longitude = location.getLongitude();
+                double latitude = location.getLatitude();*/
+
+
+                
 
 
                 MarkerOptions mp = new MarkerOptions();
 
-                mp.position(new LatLng(latitude, longitude));
+
 
                 mp.title("My Position");
-                myLoc.setValue(mp.position(new LatLng(latitude, longitude)));
+                //myLoc.setValue(mp.position(new LatLng(latitude, longitude)));
 
+                //myLoc.setValue(new LatLng(latitude, longitude));
+                //myLoc.setValue("hi");
+
+                //myLoc.setValue(mp.position(new LatLng(35.30525, -80.73682)));
+                myLoc.setValue( new LatLng(35.30525, -80.73682));
+
+                //Show alert letting user now help is on the way
                 AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
                 alertDialog.setTitle("Alert");
                 alertDialog.setMessage("Help is on the way!");
@@ -88,57 +102,9 @@ public class MainActivity extends AppCompatActivity {
                         };
                 alertDialog.show();
 
-                /*// Write a message to the database
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                //DatabaseReference myLoc = database.getReference("Emergency");
-
-                DatabaseReference myLoc = database.getReference("");
-                // Get lat/long and send to database > plot on map > alert other users?
-                if (ContextCompat.checkSelfPermission(View.getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    // Permission to access the location is missing.
-                    PermissionUtils.requestPermission(this, LOCATION_PERMISSION_REQUEST_CODE,
-                            Manifest.permission.ACCESS_FINE_LOCATION, true);
-
-                    // instantiate the location manager, note you will need to request permissions in your manifest
-                    LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                    // get the last know location from your location manager.
-                    Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                    LatLng latLng;
-                    latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                    myLoc.setValue(latLng);
-
-                //myLoc.setValue("Hello, World!");*/
-
-
             }
         });
-
-
-
-
-
     }
-
 }
-    /*public void onPing() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myLoc = database.getReference("");
-        // Get lat/long and send to database > plot on map > alert other users?
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            // Permission to access the location is missing.
-            PermissionUtils.requestPermission(this, LOCATION_PERMISSION_REQUEST_CODE,
-                    Manifest.permission.ACCESS_FINE_LOCATION, true);
-            // instantiate the location manager, note you will need to request permissions in your manifest
-            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            // get the last know location from your location manager.
-            Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            LatLng latLng;
-            latLng = new LatLng(location.getLatitude(), location.getLongitude());
-            myLoc.setValue(latLng);
-
-        }
-    }*/
 
 

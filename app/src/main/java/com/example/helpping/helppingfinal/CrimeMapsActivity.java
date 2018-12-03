@@ -40,12 +40,12 @@ public class CrimeMapsActivity extends FragmentActivity implements OnMapReadyCal
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        //mMap = googleMap;
+        /*mMap = googleMap;
 
-        // Add a marker in Charlotte and move the camera
-        //LatLng charlotte = new LatLng(35.2271, -80.8431);
-        //mMap.addMarker(new MarkerOptions().position(charlotte).title("Marker in Charlotte"));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(charlotte));
+        //Add a marker in Charlotte and move the camera
+        LatLng charlotte = new LatLng(35.2271, -80.8431);
+        mMap.addMarker(new MarkerOptions().position(charlotte).title("My Position"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(charlotte));*/
 
         //Gets location of user
         mMap = googleMap;
@@ -59,6 +59,7 @@ public class CrimeMapsActivity extends FragmentActivity implements OnMapReadyCal
             public void onMyLocationChange(Location location) {
 
                 CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude()));
+
                 CameraUpdate zoom = CameraUpdateFactory.zoomTo(11);
                 mMap.clear();
 
