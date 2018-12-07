@@ -54,7 +54,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, CrimeMapsActivity.class));
             }
         });
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+            }
+        });
 
         /*LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -68,13 +74,13 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myLoc = database.getReference("Position");
 
-                /*LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+                LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
                 Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                 double longitude = location.getLongitude();
-                double latitude = location.getLatitude();*/
+                double latitude = location.getLatitude();
 
 
-                
+
 
 
                 MarkerOptions mp = new MarkerOptions();
@@ -84,11 +90,11 @@ public class MainActivity extends AppCompatActivity {
                 mp.title("My Position");
                 //myLoc.setValue(mp.position(new LatLng(latitude, longitude)));
 
-                //myLoc.setValue(new LatLng(latitude, longitude));
+                myLoc.setValue(new LatLng(latitude, longitude));
                 //myLoc.setValue("hi");
 
                 //myLoc.setValue(mp.position(new LatLng(35.30525, -80.73682)));
-                myLoc.setValue( new LatLng(35.30525, -80.73682));
+                //myLoc.setValue( new LatLng(35.30703, -80.73574));
 
                 //Show alert letting user now help is on the way
                 AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();

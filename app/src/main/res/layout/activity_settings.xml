@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+
+    tools:context=".SettingsActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Settings"
+        android:textColor="#000000"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/switch_1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Login/Register" />
+
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/switch_2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Share Location" />
+
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/switch_3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Share Personal Information" />
+
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/switch_4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Option 4" />
+
+</LinearLayout>
